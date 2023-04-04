@@ -202,5 +202,167 @@ for key, value in student.items():
     print(value)
 
 
-#CONDITIONALS (IF ELSE)
+"""CONDITIONALS (IF ELSE)
+#if (condition):
+        #statement
+#elif (condition):
+    #statement
+#else :
+    #statement """
 
+#Loops and interations
+#for loop
+nums = [1,2,3,4,5]
+for num in nums:
+    print(num)
+
+#break: break out of loop
+for num in nums:
+    if num == 3:
+        print('Found!')
+        break
+    print(num)
+
+#continue: to ignore a step in the loop. Even after finding 3, instead of breaking our of the loop, it will continue to process 4 and 5
+for num in nums:
+    if num == 3:
+        print('Found!')
+        continue
+    print(num)
+
+
+#nested loop
+for num in nums:
+    for letter in 'abc':
+        print(num,letter)
+#range : continuous values from 0. If want to start from another value, give starting value also
+for i in range(10):
+    print(i)
+
+for i in range(1,10):
+    print(i)
+
+#while loop
+x=0
+while x<10:
+    print(x)
+    x+=1
+
+x=0
+while True:
+    if x==5:
+        break
+    print(x)
+    x+=1
+
+
+#FUNCTIONS
+#def to define a function
+#To leave the function blank without any functionality, use pass keyword to not throw an error
+def hello_func():
+    pass
+
+def hello_fun():
+    print("Hello")
+
+hello_fun()
+
+def hello_fun1():
+    return 'Hello Function'
+
+print(hello_fun1().lower())
+
+#passing parameter and a default value for one of the parameter
+def hello_fun2(greeting, name = 'You'):
+    return '{},{}'.format(greeting,name)
+
+print(hello_fun2('Hi'))
+
+#args (non keyword argument)
+#kwargs (keyqord argument): A keyword argument is where you provide a name to the variable as you pass it into the function.
+#We use the “wildcard” or “*” notation like this – *args OR **kwargs – as our function’s argument when we have doubts 
+# about the number of  arguments we should pass in a function.
+
+def student_info(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
+courses = ['March','Art']
+info = {'name':'John','age':22}
+#passing courses and info directly will not unpack courses to positional argument and info to keyword argument
+student_info(courses,info)
+#so for automatic unpacking use
+student_info(*courses,**info)
+
+#IMPORTING MODULES
+#importing a user defined python script my_module from the same directory of this python_basics.py file
+import my_module
+courses = ['History','Math','phy', 'CS']
+index = my_module.find_index(courses,'Math')
+print(index)
+
+#we can specify a nickname for my_module so that we don't have to keep writing my_module every time
+import my_module as mm
+courses = ['History','Math','phy', 'CS']
+index = mm.find_index(courses,'Math')
+print(index)
+
+#if you just want to import a function from my_module instead of the entire script
+#will give access to only this function find_index
+from my_module import find_index
+courses = ['History','Math','phy', 'CS']
+index = find_index(courses,'Math')
+print(index)
+
+#will give access to only this function find_index and test variable in my_module script
+from my_module import find_index, test
+courses = ['History','Math','phy', 'CS']
+index = find_index(courses,'Math')
+print(index)
+print(test)
+
+#to import everything use *
+from my_module import *
+courses = ['History','Math','phy', 'CS']
+index = find_index(courses,'Math')
+print(index)
+print(test)
+
+#sys.path module will return the directories that python is looking for when I import my_module
+#it looks in the same directory of this current file from which we are importing my_module, python standard libraries, etc
+from my_module import find_index, test
+import sys
+print(sys.path)
+
+#now if I moved my_module to another location different from the same directory that this file is stored:
+#it will throw an error saying no module names my_module. 
+# one approach: So we need to add this changed path to sys.path.append to ask python to look for this module in the new location
+import sys
+sys.path.append('/Users/anuram/Desktop/trial')
+from my_module import find_index, test
+
+#method 2: include this path in the environment variable
+
+#os module in python: this willgive access to the underlying operating system
+import os
+#getcwd() : current working directory
+print(os.getcwd())
+#os.chdir('path'): change working directory
+#os.listdir(): will list all the files in the current working directory
+print(os.listdir())
+#os.makedirs('path'): create sub directories and nested sub folders
+#os.mkdir('path'): can only make one subdirectory at a time cannot create layers of sub folders
+#os.rmdir('path'): remove a directory 
+#os.removedirs('path'): remove sub directories
+#os.rename('original name','new name'): rename a file
+#os.stat('file name'): status and other info about th e file
+#os.walk: to traverse through the directory: all files names, subfolders
+import os
+for dirpath, dirnames, filenames in os.walk('/Users/anuram/Desktop/'):
+    print('current path:', dirpath)
+    print('directories:', dirnames)
+    print('Files:', filenames)
+
+#os.path.join(path1, file 1): can join a path and file name to generate a new path
+
+#Read and write a file
